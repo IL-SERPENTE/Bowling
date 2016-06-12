@@ -1,0 +1,8 @@
+name: Bowling
+main: net.samagames.bowling.Bowling
+version: 1.0
+
+depend: [SamaGamesAPI]
+
+author: Rigner
+website: http://samagames.net/

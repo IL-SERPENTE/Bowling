@@ -206,7 +206,7 @@ public class CosmeticsGui extends AbstractGui
             int i = 0;
             for (Pair<ItemStack, Particle> particlePair : CosmeticsGui.PARTICLES)
             {
-                this.setSlotData(particlePair.getValue() == bPlayer.getBallDescription().getParticle() ? GlowEffect.addGlow(particlePair.getKey()) : particlePair.getKey(), i + (i > 13 ? 14 : i > 6 ? 12 : 10), "particle_" + particlePair.getValue());
+                this.setSlotData(particlePair.getValue() == bPlayer.getBallDescription().getParticle() ? GlowEffect.addGlow(particlePair.getKey()) : particlePair.getKey(), i + (i > 13 ? 14 : i > 6 ? 12 : 10), "particle;" + particlePair.getValue());
                 i++;
             }
             this.setSlotData(ChatColor.GREEN + "Retour", new ItemStack(Material.EMERALD), 40, null, "back");
@@ -217,7 +217,7 @@ public class CosmeticsGui extends AbstractGui
         {
             if (action == null)
                 return ;
-            String[] split = action.split("_");
+            String[] split = action.split(";");
             switch (split[0])
             {
                 case "particle":

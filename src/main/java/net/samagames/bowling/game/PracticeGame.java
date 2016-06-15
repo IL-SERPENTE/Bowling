@@ -30,7 +30,7 @@ public class PracticeGame extends AbstractGame
     @Override
     public void onPlayerEnd(BPlayer bPlayer)
     {
-        this.stumpPlayer(bPlayer.getPlayerIfOnline());
+        super.onPlayerEnd(bPlayer);
         new PracticeWinTemplate().execute(bPlayer);
         bPlayer.getPlayerIfOnline().sendMessage(this.coherenceMachine.getGameTag() + ChatColor.YELLOW + " Merci d'avoir joué, revenez quand vous voulez !");
     }

@@ -125,4 +125,10 @@ public class BPlayer extends GamePlayer
         }
         this.objectiveSign.updateLines();
     }
+
+    @Override
+    public void setSpectator()
+    {
+        this.spectator = true;
+    }
 }

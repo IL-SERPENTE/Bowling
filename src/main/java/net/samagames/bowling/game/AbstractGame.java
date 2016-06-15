@@ -29,10 +29,10 @@ import java.util.logging.Level;
  */
 public abstract class AbstractGame extends Game<BPlayer>
 {
-    private Bowling plugin;
-    private List<BowlingTrack> tracks;
-    private Location spawn;
-    private ItemStack rulesBook;
+    protected Bowling plugin;
+    protected List<BowlingTrack> tracks;
+    protected Location spawn;
+    protected ItemStack rulesBook;
 
     public AbstractGame(Bowling plugin, String description)
     {
@@ -150,5 +150,8 @@ public abstract class AbstractGame extends Game<BPlayer>
         player.getInventory().setItem(8, this.rulesBook);
     }
 
-    public abstract void onPlayerEnd(BPlayer bPlayer);
+    public void onPlayerEnd(BPlayer bPlayer)
+    {
+        this.stumpPlayer(bPlayer.getPlayerIfOnline());
+    }
 }

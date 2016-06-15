@@ -69,7 +69,7 @@ public class StandBall extends Pin
 
     public UUID getOwner()
     {
-        return owner;
+        return this.owner;
     }
 
     @Override

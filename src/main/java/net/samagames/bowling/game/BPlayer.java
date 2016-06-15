@@ -131,4 +131,9 @@ public class BPlayer extends GamePlayer
     {
         this.spectator = true;
     }
+
+    public int[] getScores()
+    {
+        return this.score;
+    }
 }

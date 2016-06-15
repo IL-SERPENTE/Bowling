@@ -152,6 +152,14 @@ public abstract class AbstractGame extends Game<BPlayer>
 
     public void onPlayerEnd(BPlayer bPlayer)
     {
-        this.stumpPlayer(bPlayer.getPlayerIfOnline());
+        Player player = bPlayer.getPlayerIfOnline();
+        if (player == null)
+            return ;
+        this.stumpPlayer(player);
+        this.plugin.getServer().getScheduler().runTaskAsynchronously(this.plugin, () ->
+        {
+            String url = this.plugin.getImageManager().createImage(player.getName(), bPlayer.getScores());
+            player.sendMessage(this.coherenceMachine.getGameTag() + (url == null ? ChatColor.RED + "Erreur lors de la création de votre résumé de partie, contactez un administrateur." : ChatColor.YELLOW + "Retrouvez votre score ici : " + ChatColor.AQUA + ChatColor.BOLD + url));
+        });
     }
 }

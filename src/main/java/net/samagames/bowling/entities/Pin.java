@@ -89,7 +89,7 @@ public class Pin extends EntityArmorStand
         if (this.dead || this.vector.lengthSquared() < 0.01)
             return ;
 
-        Location location = this.getBukkitEntity().getLocation().add(0D, 2D, 0D);
+        Location location = this.getBukkitEntity().getLocation().add(0D, 1D, 0D);
         boolean ok[] = new boolean[3];
         if (ok[0] = location.clone().add(this.vector.getX() / Pin.PRECISION, 0D, 0D).getBlock().getType() == Material.AIR)
             this.locX = this.locX + this.vector.getX() / Pin.PRECISION;

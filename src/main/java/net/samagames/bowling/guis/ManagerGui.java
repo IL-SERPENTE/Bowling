@@ -43,7 +43,7 @@ public class ManagerGui extends AbstractGui
     @Override
     public void display(Player player)
     {
-        this.inventory = this.bowling.getServer().createInventory(null, 36, this.bowling.getGame().getGameName());
+        this.inventory = this.bowling.getServer().createInventory(null, 45, this.bowling.getGame().getGameName());
         this.update(player);
         player.openInventory(this.inventory);
     }

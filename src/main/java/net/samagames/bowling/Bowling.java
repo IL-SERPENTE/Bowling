@@ -26,7 +26,7 @@ public class Bowling extends JavaPlugin
     public void onEnable()
     {
         this.samaGamesAPI = SamaGamesAPI.get();
-        this.imageManager = new ImageManager();
+        this.imageManager = new ImageManager(this);
 
         this.getServer().getPluginManager().registerEvents(new PlayerListener(this), this);
         this.getServer().getPluginManager().registerEvents(new ShootListener(this), this);

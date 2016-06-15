@@ -34,7 +34,7 @@ public class CosmeticsGui extends AbstractGui
     @Override
     public void display(Player player)
     {
-        this.inventory = this.plugin.getServer().createInventory(null, 36, "Cosmétiques");
+        this.inventory = this.plugin.getServer().createInventory(null, 45, "Cosmétiques");
         this.update(player);
         player.openInventory(this.inventory);
     }
@@ -84,7 +84,7 @@ public class CosmeticsGui extends AbstractGui
         @Override
         public void display(Player player)
         {
-            this.inventory = player.getServer().createInventory(null, 36, "Selecteur - Masse");
+            this.inventory = player.getServer().createInventory(null, 45, "Selecteur - Masse");
             this.update(player);
             player.openInventory(this.inventory);
         }
@@ -99,7 +99,7 @@ public class CosmeticsGui extends AbstractGui
             this.setSlotData(ChatColor.DARK_GREEN + "Moyen (5 kg)", bPlayer.getBallDescription().getBallWeight() == StandBall.BallWeight.MEDIUM ? GlowEffect.addGlow(new ItemStack(Material.SNOW_BALL)) : new ItemStack(Material.SNOW_BALL), 13, null, "medium");
             this.setSlotData(ChatColor.DARK_GRAY + "Lourd (7 kg)", bPlayer.getBallDescription().getBallWeight() == StandBall.BallWeight.HEAVY ? GlowEffect.addGlow(new ItemStack(Material.FIREBALL)) : new ItemStack(Material.FIREBALL), 15, null, "heavy");
 
-            this.setSlotData(ChatColor.GREEN + "Retour", new ItemStack(Material.EMERALD), 22, null, "back");
+            this.setSlotData(ChatColor.GREEN + "Retour", new ItemStack(Material.EMERALD), 31, null, "back");
         }
 
         @Override

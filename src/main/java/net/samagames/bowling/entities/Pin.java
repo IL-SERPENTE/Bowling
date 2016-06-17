@@ -84,6 +84,11 @@ public class Pin extends EntityArmorStand
         return 0.30D;
     }
 
+    public double getFrictionRatio()
+    {
+        return 0.6D;
+    }
+
     public void movePin()
     {
         if (this.dead || this.vector.lengthSquared() < 0.01)
@@ -106,7 +111,7 @@ public class Pin extends EntityArmorStand
         this.lastX = this.locX;
         this.lastY = this.locY;
         this.lastZ = this.locZ;
-        this.vector.multiply(0.999D);
+        this.vector.multiply(this.getFrictionRatio());
     }
 
     public void checkCollide()

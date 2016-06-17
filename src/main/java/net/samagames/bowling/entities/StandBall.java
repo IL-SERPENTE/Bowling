@@ -18,7 +18,6 @@ import java.util.UUID;
  */
 public class StandBall extends Pin
 {
-
     public static final String[] WOOL_NAMES = { ChatColor.WHITE + "Boule blanche", ChatColor.GOLD + "Boule orange", ChatColor.LIGHT_PURPLE + "Boule magenta",
             ChatColor.AQUA + "Boule bleu clair", ChatColor.YELLOW + "Boule jaune", ChatColor.GREEN + "Boule vert clair", ChatColor.LIGHT_PURPLE + "Boule rose",
             ChatColor.DARK_GRAY + "Bouble grise", ChatColor.GRAY + "Boule gris clair", ChatColor.DARK_AQUA + "Bouble cyan", ChatColor.DARK_PURPLE + "Boule violette",
@@ -67,6 +66,12 @@ public class StandBall extends Pin
         return 0.43D;
     }
 
+    @Override
+    public double getFrictionRatio()
+    {
+        return 0.999D;
+    }
+
     public UUID getOwner()
     {
         return this.owner;
@@ -77,7 +82,7 @@ public class StandBall extends Pin
     {
         super.m();
         if (this.ballDescription.particle != null)
-            this.getBukkitEntity().getWorld().spawnParticle(this.ballDescription.particle, this.locX, this.locY, this.locZ, 4);
+            this.getBukkitEntity().getWorld().spawnParticle(this.ballDescription.particle, this.locX, this.locY + 1, this.locZ, 4);
     }
 
     public static class BallDescription
@@ -110,17 +115,17 @@ public class StandBall extends Pin
 
         public BallWeight getBallWeight()
         {
-            return ballWeight;
+            return this.ballWeight;
         }
 
         public Particle getParticle()
         {
-            return particle;
+            return this.particle;
         }
 
         public short getBallColor()
         {
-            return ballColor;
+            return this.ballColor;
         }
     }
 

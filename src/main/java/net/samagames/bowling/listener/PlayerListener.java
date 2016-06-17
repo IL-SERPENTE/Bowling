@@ -12,6 +12,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.player.PlayerInteractAtEntityEvent;
 
 /**
@@ -38,6 +39,13 @@ public class PlayerListener implements Listener
         event.setCancelled(true);
         if (event.getDamager() instanceof Player)
             this.onInteract((Player)event.getDamager(), event.getEntity());
+    }
+
+    @EventHandler
+    public void onEntityDamage(EntityDamageEvent event)
+    {
+        if (event.getEntity() instanceof Player)
+            event.setCancelled(true);
     }
 
     private void onInteract(Player player, Entity entity)

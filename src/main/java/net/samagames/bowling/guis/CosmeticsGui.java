@@ -1,6 +1,7 @@
 package net.samagames.bowling.guis;
 
 import net.samagames.api.gui.AbstractGui;
+import net.samagames.api.shops.IPlayerShop;
 import net.samagames.bowling.Bowling;
 import net.samagames.bowling.entities.Ball;
 import net.samagames.bowling.entities.StandBall;
@@ -123,10 +124,11 @@ public class CosmeticsGui extends AbstractGui
                     break ;
             }
             BPlayer bPlayer = this.plugin.getGame().getPlayer(player.getUniqueId());
-            if (bPlayer != null)
+            if (bPlayer != null && ballWeight != null)
             {
                 bPlayer.getBallDescription().setBallWeight(ballWeight);
                 player.sendMessage(ChatColor.YELLOW + "La masse de votre boule a bien été changée.");
+                this.update(player);
             }
         }
     }
@@ -168,9 +170,21 @@ public class CosmeticsGui extends AbstractGui
                     BPlayer bPlayer = this.plugin.getGame().getPlayer(player.getUniqueId());
                     if (bPlayer != null)
                     {
+                        try
+                        {
+                            for (int i = 0; i < 16; i++)
+                            {
+                                IPlayerShop iPlayerShop = this.plugin.getSamaGamesAPI().getShopsManager().getPlayer(bPlayer.getUUID());
+                                if (i == stack.getDurability() && iPlayerShop.getTransactionsByID(i + 147) != null)
+                                    iPlayerShop.setSelectedItem(i + 147, true);
+                                else if (i != stack.getDurability() && iPlayerShop.getTransactionsByID(i + 147) != null && iPlayerShop.isSelectedItem(i + 147))
+                                    iPlayerShop.setSelectedItem(i + 147, false);
+                            }
+                        } catch (Exception ignored) {}
                         bPlayer.getBallDescription().setBallColor(stack.getDurability());
                         player.sendMessage(ChatColor.YELLOW + "La couleur de votre boule a bien été changée.");
                     }
+                    this.update(player);
                     break ;
                 case "back":
                     this.plugin.getSamaGamesAPI().getGuiManager().openGui(player, new CosmeticsGui(this.plugin));
@@ -228,6 +242,7 @@ public class CosmeticsGui extends AbstractGui
                         bPlayer.getBallDescription().setParticle(particle);
                         player.sendMessage(ChatColor.YELLOW + "Les particules de votre boule ont bien été changées.");
                     }
+                    this.update(player);
                     break ;
                 case "back":
                     this.plugin.getSamaGamesAPI().getGuiManager().openGui(player, new CosmeticsGui(this.plugin));

@@ -2,7 +2,6 @@ package net.samagames.bowling.image;
 
 import net.samagames.bowling.Bowling;
 
-import java.io.IOException;
 import java.util.logging.Level;
 
 /**
@@ -29,7 +28,7 @@ public class ImageManager
             this.plugin.getLogger().info("Created score image for player " + player + " -> " + url);
             return url;
         }
-        catch (IOException ex)
+        catch (Exception ex)
         {
             this.plugin.getLogger().log(Level.SEVERE, "Can't upload image", ex);
             return null;

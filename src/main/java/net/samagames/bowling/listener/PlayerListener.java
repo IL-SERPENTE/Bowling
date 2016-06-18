@@ -14,6 +14,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.player.PlayerInteractAtEntityEvent;
+import org.bukkit.event.player.PlayerSwapHandItemsEvent;
 
 /**
  * Created by Rigner for project Bowling.
@@ -60,5 +61,11 @@ public class PlayerListener implements Listener
                 this.plugin.getServer().getScheduler().runTaskLater(this.plugin, () -> Titles.sendTitle(player, 10, 200, 10, "", ChatColor.GOLD + "Tirez"), 20L);
             }
         }
+    }
+
+    @EventHandler
+    public void onSwapHand(PlayerSwapHandItemsEvent event)
+    {
+        event.setCancelled(true);
     }
 }

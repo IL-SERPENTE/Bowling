@@ -82,7 +82,7 @@ public class StandBall extends Pin
     {
         super.m();
         if (this.ballDescription.particle != null)
-            this.getBukkitEntity().getWorld().spawnParticle(this.ballDescription.particle, this.locX, this.locY + 1, this.locZ, 4);
+            this.getBukkitEntity().getWorld().spawnParticle(this.ballDescription.particle, this.locX, this.locY + 1, this.locZ, 4, 0D, 0D, 0D, 1);
     }
 
     public static class BallDescription
@@ -131,15 +131,22 @@ public class StandBall extends Pin
 
     public enum BallWeight
     {
-        LIGHT(3),
-        MEDIUM(5),
-        HEAVY(7);
+        LIGHT(3, 163),
+        MEDIUM(5, 164),
+        HEAVY(7, 165);
 
         private double weight;
+        private int itemId;
 
-        BallWeight(double weight)
+        BallWeight(double weight, int itemId)
         {
             this.weight = weight;
+            this.itemId = itemId;
+        }
+
+        public int getItemId()
+        {
+            return this.itemId;
         }
     }
 }

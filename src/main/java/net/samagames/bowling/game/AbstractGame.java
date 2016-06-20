@@ -74,6 +74,7 @@ public abstract class AbstractGame extends Game<BPlayer>
             this.gamePlayers.put(player.getUniqueId(), bPlayer);
             bPlayer.updateScoreboard(this.plugin);
             Titles.sendTitle(player, 20, 60, 20, ChatColor.DARK_AQUA + "" + ChatColor.BOLD + this.gameName, ChatColor.AQUA + this.gameDescription);
+            this.plugin.getServer().getScheduler().runTaskAsynchronously(this.plugin, bPlayer::loadFromDB);
         }
         catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException | InstantiationException ex)
         {

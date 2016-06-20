@@ -1,11 +1,18 @@
 package net.samagames.bowling.game;
 
+import net.samagames.api.SamaGamesAPI;
 import net.samagames.api.games.GamePlayer;
+import net.samagames.api.shops.IPlayerShop;
 import net.samagames.bowling.Bowling;
 import net.samagames.bowling.entities.Ball;
+import net.samagames.bowling.entities.StandBall;
+import net.samagames.bowling.guis.CosmeticsGui;
 import net.samagames.tools.scoreboards.ObjectiveSign;
+import org.apache.commons.lang3.tuple.Triple;
 import org.bukkit.ChatColor;
+import org.bukkit.Particle;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 
 import java.util.Arrays;
 
@@ -28,6 +35,27 @@ public class BPlayer extends GamePlayer
         this.score = new int[21];
         this.objectiveSign = null;
         this.resetScore(player);
+    }
+
+    public void loadFromDB()
+    {
+        try
+        {
+            IPlayerShop iPlayerShop = SamaGamesAPI.get().getShopsManager().getPlayer(this.uuid);
+
+            for (int i = 0; i < 16; i++)
+                if (iPlayerShop.getTransactionsByID(i + 147) != null && iPlayerShop.isSelectedItem(i + 147))
+                    this.ballDescription.setBallColor((short)i);
+
+            for (StandBall.BallWeight ballWeight : StandBall.BallWeight.values())
+                if (iPlayerShop.getTransactionsByID(ballWeight.getItemId()) != null && iPlayerShop.isSelectedItem(ballWeight.getItemId()))
+                    this.ballDescription.setBallWeight(ballWeight);
+
+            for (CosmeticsGui.ParticleWrapper triple : CosmeticsGui.PARTICLES)
+                if (iPlayerShop.getTransactionsByID(triple.getItemId()) != null && iPlayerShop.isSelectedItem(triple.getItemId()))
+                    this.ballDescription.setParticle(triple.getParticle());
+
+        } catch (Exception ignored) {}
     }
 
     public BowlingTrack getBowlingTrack()

@@ -2,6 +2,7 @@ package net.samagames.bowling.entities;
 
 import net.minecraft.server.v1_9_R2.EntityArmorStand;
 import net.minecraft.server.v1_9_R2.World;
+import org.apache.commons.lang3.tuple.Pair;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -21,6 +22,7 @@ public class Pin extends EntityArmorStand
 {
     public static final double PRECISION = 30D;
     public static final List<Pin> PINS = new LinkedList<>();
+    public static final List<Pair<Pin, Pin>> COLLISIONS = new LinkedList<>();
 
     protected static Field lockSlotsField;
     protected Vector vector;
@@ -112,6 +114,7 @@ public class Pin extends EntityArmorStand
         this.lastY = this.locY;
         this.lastZ = this.locZ;
         this.vector.multiply(this.getFrictionRatio());
+        this.vector.setY(-2);
     }
 
     public void checkCollide()
@@ -123,6 +126,11 @@ public class Pin extends EntityArmorStand
 
     public void collide(Pin pin)
     {
+        for (Pair<Pin, Pin> pair : Pin.COLLISIONS)
+            if ((pair.getLeft() == this && pair.getRight() == pin) || (pair.getLeft() == pin && pair.getRight() == this))
+                return ;
+        Pin.COLLISIONS.add(Pair.of(pin, this));
+
         //Algorithm from http://www.gamasutra.com/view/feature/131424/pool_hall_lessons_fast_accurate_.php?page=3
 
         Vector n = new Vector(this.locX - pin.locX, this.locY - pin.locY, this.locZ - pin.locZ).normalize();

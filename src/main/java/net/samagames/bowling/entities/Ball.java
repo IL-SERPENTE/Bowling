@@ -17,6 +17,7 @@ public class Ball extends StandBall
 {
     private Bowling bowling;
     private BowlingTrack track;
+    private Vector initialVector;
 
     public Ball(World world)
     {
@@ -26,6 +27,7 @@ public class Ball extends StandBall
     public Ball(World world, UUID owner, Location location, Vector vector, BallDescription ballDescription)
     {
         super(world, owner, location, vector, ballDescription);
+        this.initialVector = vector.clone();
         this.vector.setY(-2);
         this.bowling = (Bowling)Bukkit.getPluginManager().getPlugin("Bowling");
         BPlayer bPlayer = this.bowling.getGame().getPlayer(owner);
@@ -35,7 +37,7 @@ public class Ball extends StandBall
     @Override
     public void movePin()
     {
-        if (!this.dead && this.track != null && this.track.isInEndZone(this.getBukkitEntity().getLocation()))
+        if (!this.dead && this.track != null && (this.track.isInEndZone(this.getBukkitEntity().getLocation()) || Math.abs(this.initialVector.angle(this.vector)) > Math.PI / 2 || this.vector.lengthSquared() < 0.01))
         {
             this.die();
             this.bowling.getServer().getScheduler().runTaskLater(this.bowling, () -> this.track.onShootEnd(), 40L);

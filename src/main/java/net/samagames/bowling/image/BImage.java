@@ -52,7 +52,7 @@ public class BImage
                     graphics2D.drawString(score3 == 10 ? "X" : String.valueOf(score3), this.imageConfiguration.getScorePos().get(i).get(3).getX(), this.imageConfiguration.getScorePos().get(i).get(3).getY());
             }
 
-            if (scores[i * 2] == 10) //STRIKE
+            if (scores[i * 2] == 10)
             {
                 int n = 0;
                 for (int j = i * 2 + 1; j < scores.length && n < 2; j++)
@@ -63,13 +63,13 @@ public class BImage
                     }
                 summaries[i] += 10;
             }
-            else if (scores[i * 2] + scores[i * 2 + 1] == 10) //SPARE
+            else if (scores[i * 2] + scores[i * 2 + 1] == 10)
             {
                 if (scores[i * 2 + 2] != -1)
                     summaries[i] += scores[i * 2 + 2];
                 summaries[i] += 10;
             }
-            else if (scores[i * 2] != -1) //OTHER
+            else if (scores[i * 2] != -1)
             {
                 summaries[i] += scores[i * 2];
                 if (scores[i * 2 + 1] != -1)

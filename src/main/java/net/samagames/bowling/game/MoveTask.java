@@ -18,7 +18,9 @@ public class MoveTask extends BukkitRunnable
         pinList.forEach(Pin::onPreMove);
         for (int i = 0; i < Pin.PRECISION; i++)
         {
+            Pin.COLLISIONS.clear();
             pinList.forEach(Pin::checkCollide);
+            Pin.COLLISIONS.clear();
             pinList.forEach(Pin::movePin);
         }
     }

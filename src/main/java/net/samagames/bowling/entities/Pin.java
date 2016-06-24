@@ -20,7 +20,7 @@ import java.util.logging.Level;
  */
 public class Pin extends EntityArmorStand
 {
-    public static final double PRECISION = 30D;
+    public static final double PRECISION = 60D;
     public static final List<Pin> PINS = new LinkedList<>();
     public static final List<Pair<Pin, Pin>> COLLISIONS = new LinkedList<>();
 
@@ -83,7 +83,7 @@ public class Pin extends EntityArmorStand
 
     public double getRadius()
     {
-        return 0.30D;
+        return 0.23D;
     }
 
     public double getFrictionRatio()
@@ -114,20 +114,27 @@ public class Pin extends EntityArmorStand
         this.lastY = this.locY;
         this.lastZ = this.locZ;
         this.vector.multiply(this.getFrictionRatio());
-        this.vector.setY(-2);
+        this.vector.setY(this instanceof StandBall ? -2 : 0);
     }
 
     public void checkCollide()
     {
         if (this.dead)
             return ;
-        Pin.PINS.stream().filter(entity -> !entity.dead && entity != this && this.getBukkitEntity().getLocation().distanceSquared(entity.getBukkitEntity().getLocation()) <= Math.pow(this.getRadius() + entity.getRadius(), 2)).forEach(entity -> this.collide((Pin)entity));
+        Pin.PINS.stream().filter(entity ->
+        {
+            Location loc1 = this.getBukkitEntity().getLocation();
+            Location loc2 = entity.getBukkitEntity().getLocation();
+            loc1.setY(0D);
+            loc2.setY(0D);
+            return !entity.dead && entity != this && loc1.distanceSquared(loc2) <= Math.pow(this.getRadius() + entity.getRadius(), 2);
+        }).forEach(entity -> this.collide((Pin)entity));
     }
 
     public void collide(Pin pin)
     {
         for (Pair<Pin, Pin> pair : Pin.COLLISIONS)
-            if ((pair.getLeft() == this && pair.getRight() == pin) || (pair.getLeft() == pin && pair.getRight() == this))
+            if ((pair.getLeft().getId() == this.getId() && pair.getRight().getId() == pin.getId()) || (pair.getLeft().getId() == pin.getId() && pair.getRight().getId() == this.getId()))
                 return ;
         Pin.COLLISIONS.add(Pair.of(pin, this));
 

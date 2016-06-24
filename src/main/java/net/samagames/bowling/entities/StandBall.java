@@ -82,7 +82,7 @@ public class StandBall extends Pin
     {
         super.m();
         if (this.ballDescription.particle != null)
-            this.getBukkitEntity().getWorld().spawnParticle(this.ballDescription.particle, this.locX, this.locY + 1, this.locZ, 4, 0D, 0D, 0D, 0D);
+            this.getBukkitEntity().getWorld().spawnParticle(this.ballDescription.particle, this.locX, this.locY + 1, this.locZ, 3, 0D, 0D, 0D, 0D);
     }
 
     public static class BallDescription

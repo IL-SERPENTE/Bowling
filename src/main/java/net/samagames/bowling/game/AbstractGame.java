@@ -157,10 +157,11 @@ public abstract class AbstractGame extends Game<BPlayer>
         if (player == null)
             return ;
         this.stumpPlayer(player);
-        this.plugin.getServer().getScheduler().runTaskAsynchronously(this.plugin, () ->
-        {
-            String url = this.plugin.getImageManager().createImage(player.getName(), bPlayer.getScores());
-            player.sendMessage(this.coherenceMachine.getGameTag() + (url == null ? ChatColor.RED + "Erreur lors de la création de votre résumé de partie, contactez un administrateur." : ChatColor.YELLOW + "Retrouvez votre score ici : " + ChatColor.AQUA + ChatColor.BOLD + url));
-        });
+        if (this.plugin.getImageManager().isEnabled())
+            this.plugin.getServer().getScheduler().runTaskAsynchronously(this.plugin, () ->
+            {
+                String url = this.plugin.getImageManager().createImage(player.getName(), bPlayer.getScores());
+                player.sendMessage(this.coherenceMachine.getGameTag() + " " + (url == null ? ChatColor.RED + "Erreur lors de la création de votre résumé de partie, contactez un administrateur." : ChatColor.YELLOW + "Retrouvez votre score ici : " + ChatColor.AQUA + ChatColor.BOLD + url));
+            });
     }
 }

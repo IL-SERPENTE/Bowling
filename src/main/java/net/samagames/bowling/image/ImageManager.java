@@ -15,7 +15,15 @@ public class ImageManager
     public ImageManager(Bowling plugin)
     {
         this.plugin = plugin;
-        this.imageConfiguration = new ImageConfiguration();
+        try
+        {
+            this.imageConfiguration = new ImageConfiguration();
+        }
+        catch (Exception ignored)
+        {
+            this.imageConfiguration = null;
+            this.plugin.getLogger().warning("Could not read image configuration, this feature is now disabled.");
+        }
     }
 
     public String createImage(String player, int[] scores)
@@ -33,5 +41,10 @@ public class ImageManager
             this.plugin.getLogger().log(Level.SEVERE, "Can't upload image", ex);
             return null;
         }
+    }
+
+    public boolean isEnabled()
+    {
+        return this.imageConfiguration != null;
     }
 }

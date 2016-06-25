@@ -2,13 +2,11 @@ package net.samagames.bowling;
 
 import com.google.gson.JsonPrimitive;
 import net.samagames.api.SamaGamesAPI;
-import net.samagames.bowling.game.AbstractGame;
-import net.samagames.bowling.game.MoveTask;
-import net.samagames.bowling.game.PracticeGame;
-import net.samagames.bowling.game.VersusGame;
+import net.samagames.bowling.game.*;
 import net.samagames.bowling.image.ImageManager;
 import net.samagames.bowling.listener.PlayerListener;
 import net.samagames.bowling.listener.ShootListener;
+import org.bukkit.Sound;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /**
@@ -20,6 +18,7 @@ public class Bowling extends JavaPlugin
     private AbstractGame game;
     private boolean practice;
     private ImageManager imageManager;
+    private SoundManager soundManager;
 
     @Override
     @SuppressWarnings("deprecation")
@@ -27,6 +26,7 @@ public class Bowling extends JavaPlugin
     {
         this.samaGamesAPI = SamaGamesAPI.get();
         this.imageManager = new ImageManager(this);
+        this.soundManager = new SoundManager(this);
 
         this.getServer().getPluginManager().registerEvents(new PlayerListener(this), this);
         this.getServer().getPluginManager().registerEvents(new ShootListener(this), this);
@@ -56,5 +56,10 @@ public class Bowling extends JavaPlugin
     public ImageManager getImageManager()
     {
         return this.imageManager;
+    }
+
+    public SoundManager getSoundManager()
+    {
+        return this.soundManager;
     }
 }

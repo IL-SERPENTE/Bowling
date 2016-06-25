@@ -58,7 +58,7 @@ public class PlayerListener implements Listener
             {
                 player.getInventory().setItem(player.getInventory().getHeldItemSlot(), ((ArmorStand)standBall.getBukkitEntity()).getHelmet());
                 standBall.die();
-                this.plugin.getServer().getScheduler().runTaskLater(this.plugin, () -> Titles.sendTitle(player, 10, 200, 10, "", ChatColor.GOLD + "Tirez"), 20L);
+                this.plugin.getServer().getScheduler().runTaskLater(this.plugin, () -> Titles.sendTitle(player, 10, 200, 10, "", ChatColor.GOLD + "Tirez en restant appuyé !"), 20L);
             }
         }
     }

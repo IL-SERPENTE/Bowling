@@ -75,6 +75,7 @@ public abstract class AbstractGame extends Game<BPlayer>
             bPlayer.updateScoreboard(this.plugin);
             Titles.sendTitle(player, 20, 60, 20, ChatColor.DARK_AQUA + "" + ChatColor.BOLD + this.gameName, ChatColor.AQUA + this.gameDescription);
             this.plugin.getServer().getScheduler().runTaskAsynchronously(this.plugin, bPlayer::loadFromDB);
+            this.plugin.getSoundManager().addPlayer(player);
         }
         catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException | InstantiationException ex)
         {
@@ -91,6 +92,7 @@ public abstract class AbstractGame extends Game<BPlayer>
     @Override
     public void handleLogout(Player player)
     {
+        this.plugin.getSoundManager().removePlayer(player);
         this.stumpPlayer(player);
 
         if (this.status != Status.FINISHED)

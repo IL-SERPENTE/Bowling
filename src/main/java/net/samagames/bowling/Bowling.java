@@ -6,7 +6,6 @@ import net.samagames.bowling.game.*;
 import net.samagames.bowling.image.ImageManager;
 import net.samagames.bowling.listener.PlayerListener;
 import net.samagames.bowling.listener.ShootListener;
-import org.bukkit.Sound;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /**
@@ -21,7 +20,6 @@ public class Bowling extends JavaPlugin
     private SoundManager soundManager;
 
     @Override
-    @SuppressWarnings("deprecation")
     public void onEnable()
     {
         this.samaGamesAPI = SamaGamesAPI.get();
@@ -30,7 +28,7 @@ public class Bowling extends JavaPlugin
 
         this.getServer().getPluginManager().registerEvents(new PlayerListener(this), this);
         this.getServer().getPluginManager().registerEvents(new ShootListener(this), this);
-        this.getServer().getScheduler().runTaskTimer(this, new MoveTask(), 1L, 1L);
+        new MoveTask().runTaskTimer(this, 1L, 1L);
 
         this.practice = this.samaGamesAPI.getGameManager().getGameProperties().getConfig("practice", new JsonPrimitive(true)).getAsBoolean();
         this.game = this.practice ? new PracticeGame(this) : new VersusGame(this);

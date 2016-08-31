@@ -23,5 +23,6 @@ public class MoveTask extends BukkitRunnable
             Pin.COLLISIONS.clear();
             pinList.forEach(Pin::movePin);
         }
+        pinList.forEach(Pin::onPostMove);
     }
 }

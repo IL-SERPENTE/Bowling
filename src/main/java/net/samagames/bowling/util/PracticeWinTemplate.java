@@ -18,11 +18,12 @@ public class PracticeWinTemplate
         List<String> lines = new ArrayList<>();
 
         lines.add(ChatUtils.getCenteredText(ChatColor.WHITE + "•" + ChatColor.BOLD + " Score " + ChatColor.WHITE + "•"));
-        lines.add(ChatUtils.getCenteredText(ChatColor.GRAY.toString() + bPlayer.getTotalScore()));
+        int score = bPlayer.getTotalScore();
+        lines.add((score < 100 ? " " : "") + ChatUtils.getCenteredText(ChatColor.GRAY.toString() + score));
         lines.add("");
 
         lines.add(ChatUtils.getCenteredText(ChatColor.WHITE + "★" + ChatColor.BOLD + " Record personnel " + ChatColor.WHITE + "★"));
-        lines.add(ChatUtils.getCenteredText(ChatColor.GRAY + "Inconnu"));
+        lines.add(" " + ChatUtils.getCenteredText(ChatColor.GRAY + "Inconnu"));
         lines.add("");
 
         return lines;

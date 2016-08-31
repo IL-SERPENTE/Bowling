@@ -6,6 +6,8 @@ import net.samagames.bowling.game.BPlayer;
 import net.samagames.bowling.game.BowlingTrack;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.entity.ArmorStand;
+import org.bukkit.util.EulerAngle;
 import org.bukkit.util.Vector;
 
 import java.util.UUID;
@@ -44,5 +46,14 @@ public class Ball extends StandBall
             return ;
         }
         super.movePin();
+    }
+
+    @Override
+    public void onPostMove()
+    {
+        ArmorStand bukkitArmorStand = (ArmorStand) this.getBukkitEntity();
+        EulerAngle angle = bukkitArmorStand.getHeadPose();
+        angle.setZ(angle.getZ() + Math.sqrt(Math.pow(this.locX - this.lastX, 2) + Math.pow(this.locZ - this.lastZ, 2)) / 2D);
+        bukkitArmorStand.setHeadPose(angle);
     }
 }

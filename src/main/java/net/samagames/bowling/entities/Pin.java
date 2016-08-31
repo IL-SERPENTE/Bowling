@@ -41,7 +41,7 @@ public class Pin extends EntityArmorStand
     public Pin(World world, Location location, Vector vector)
     {
         super(world);
-        this.setPositionRotation(location.getX(), location.getY(), location.getZ(), location.getYaw(), location.getPitch());
+        this.setPositionRotation(location.getX(), location.getY(), location.getZ(), location.getYaw() + 90F, location.getPitch());
 
         ArmorStand bukkitArmorStand = (ArmorStand)this.getBukkitEntity();
         bukkitArmorStand.setVisible(false);
@@ -83,7 +83,7 @@ public class Pin extends EntityArmorStand
 
     public double getRadius()
     {
-        return 0.23D;
+        return 0.20D;
     }
 
     public double getFrictionRatio()
@@ -115,6 +115,10 @@ public class Pin extends EntityArmorStand
         this.lastZ = this.locZ;
         this.vector.multiply(this.getFrictionRatio());
         this.vector.setY(this instanceof StandBall ? -2 : 0);
+    }
+
+    public void onPostMove()
+    {
     }
 
     public void checkCollide()

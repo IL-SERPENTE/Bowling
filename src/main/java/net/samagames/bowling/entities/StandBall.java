@@ -1,6 +1,6 @@
 package net.samagames.bowling.entities;
 
-import net.minecraft.server.v1_9_R2.World;
+import net.minecraft.server.v1_10_R1.World;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -26,7 +26,7 @@ public class StandBall extends Pin
     private BallDescription ballDescription;
     private UUID owner;
 
-    public StandBall(World world)
+    StandBall(World world)
     {
         super(world);
     }
@@ -36,7 +36,7 @@ public class StandBall extends Pin
         this(world, owner, location, new Vector().zero(), ballDescription);
     }
 
-    public StandBall(World world, UUID owner, Location location, Vector vector, BallDescription ballDescription)
+    StandBall(World world, UUID owner, Location location, Vector vector, BallDescription ballDescription)
     {
         super(world, location, vector);
 

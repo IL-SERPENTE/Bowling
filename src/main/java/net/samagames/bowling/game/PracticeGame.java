@@ -24,7 +24,7 @@ public class PracticeGame extends AbstractGame
     @Override
     public void startGame()
     {
-        /** No start */
+        /* No start */
     }
 
     @Override

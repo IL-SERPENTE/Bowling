@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Created by Rigner for project Bowling.
  */
-public class ImageConfiguration
+class ImageConfiguration
 {
     private String path;
     private String apiKey;
@@ -21,7 +21,7 @@ public class ImageConfiguration
     private BFont subScoresFont;
     private List<List<BPos>> scorePos;
 
-    public ImageConfiguration() throws NullPointerException
+    ImageConfiguration() throws NullPointerException
     {
         JsonObject jsonObject = SamaGamesAPI.get().getGameManager().getGameProperties().getConfig("image", null).getAsJsonObject();
         this.path = jsonObject.get("file").getAsString();
@@ -53,47 +53,47 @@ public class ImageConfiguration
         }
     }
 
-    public String getFilePath()
+    String getFilePath()
     {
         return path;
     }
 
-    public String getApiKey()
+    String getApiKey()
     {
         return apiKey;
     }
 
-    public BPos getUserNamePos()
+    BPos getUserNamePos()
     {
         return this.userNamePos;
     }
 
-    public BFont getUserNameFont()
+    BFont getUserNameFont()
     {
         return this.userNameFont;
     }
 
-    public BFont getScoreFont()
+    BFont getScoreFont()
     {
         return this.scoreFont;
     }
 
-    public BFont getSubScoresFont()
+    BFont getSubScoresFont()
     {
         return this.subScoresFont;
     }
 
-    public List<List<BPos>> getScorePos()
+    List<List<BPos>> getScorePos()
     {
         return this.scorePos;
     }
 
-    public BPos getSummaryPos()
+    BPos getSummaryPos()
     {
         return summaryPos;
     }
 
-    public static class BPos
+    static class BPos
     {
         private int x;
         private int y;
@@ -104,18 +104,18 @@ public class ImageConfiguration
             this.y = y;
         }
 
-        public int getX()
+        int getX()
         {
             return x;
         }
 
-        public int getY()
+        int getY()
         {
             return y;
         }
     }
 
-    public static class BFont
+    static class BFont
     {
         private String name;
         private int size;
@@ -126,12 +126,12 @@ public class ImageConfiguration
             this.size = size;
         }
 
-        public String getName()
+        String getName()
         {
             return name;
         }
 
-        public int getSize()
+        int getSize()
         {
             return size;
         }

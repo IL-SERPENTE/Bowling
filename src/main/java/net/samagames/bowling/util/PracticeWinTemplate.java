@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class PracticeWinTemplate
 {
-    public List<String> prepare(BPlayer bPlayer)
+    private List<String> prepare(BPlayer bPlayer)
     {
         List<String> lines = new ArrayList<>();
 

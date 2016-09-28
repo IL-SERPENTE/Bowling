@@ -5,7 +5,7 @@ import net.samagames.bowling.entities.Ball;
 import net.samagames.bowling.entities.StandBall;
 import net.samagames.tools.Titles;
 import org.bukkit.ChatColor;
-import org.bukkit.craftbukkit.v1_9_R2.entity.CraftEntity;
+import org.bukkit.craftbukkit.v1_10_R1.entity.CraftEntity;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;

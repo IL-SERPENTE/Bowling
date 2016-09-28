@@ -1,7 +1,7 @@
 package net.samagames.bowling.entities;
 
-import net.minecraft.server.v1_9_R2.EntityArmorStand;
-import net.minecraft.server.v1_9_R2.World;
+import net.minecraft.server.v1_10_R1.EntityArmorStand;
+import net.minecraft.server.v1_10_R1.World;
 import org.apache.commons.lang3.tuple.Pair;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -27,7 +27,7 @@ public class Pin extends EntityArmorStand
     protected static Field lockSlotsField;
     protected Vector vector;
 
-    public Pin(World world)
+    Pin(World world)
     {
         super(world);
         this.die();
@@ -38,7 +38,7 @@ public class Pin extends EntityArmorStand
         this(world, location, new Vector().zero());
     }
 
-    public Pin(World world, Location location, Vector vector)
+    Pin(World world, Location location, Vector vector)
     {
         super(world);
         this.setPositionRotation(location.getX(), location.getY(), location.getZ(), location.getYaw() + 90F, location.getPitch());
@@ -132,10 +132,10 @@ public class Pin extends EntityArmorStand
             loc1.setY(0D);
             loc2.setY(0D);
             return !entity.dead && entity != this && loc1.distanceSquared(loc2) <= Math.pow(this.getRadius() + entity.getRadius(), 2);
-        }).forEach(entity -> this.collide((Pin)entity));
+        }).forEach(this::collide);
     }
 
-    public void collide(Pin pin)
+    private void collide(Pin pin)
     {
         for (Pair<Pin, Pin> pair : Pin.COLLISIONS)
             if ((pair.getLeft().getId() == this.getId() && pair.getRight().getId() == pin.getId()) || (pair.getLeft().getId() == pin.getId() && pair.getRight().getId() == this.getId()))

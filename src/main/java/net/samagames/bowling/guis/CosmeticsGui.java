@@ -27,7 +27,7 @@ public class CosmeticsGui extends AbstractGui
 
     private Bowling plugin;
 
-    public CosmeticsGui(Bowling plugin)
+    CosmeticsGui(Bowling plugin)
     {
         this.plugin = plugin;
     }
@@ -73,7 +73,7 @@ public class CosmeticsGui extends AbstractGui
             this.plugin.getSamaGamesAPI().getGuiManager().openGui(player, gui);
     }
 
-    static class MassSelectorGui extends AbstractGui
+    private static class MassSelectorGui extends AbstractGui
     {
         private Bowling plugin;
 
@@ -144,11 +144,11 @@ public class CosmeticsGui extends AbstractGui
         }
     }
 
-    class ColorSelectorGui extends AbstractGui
+    private class ColorSelectorGui extends AbstractGui
     {
         private Bowling plugin;
 
-        public ColorSelectorGui(Bowling plugin)
+        ColorSelectorGui(Bowling plugin)
         {
             this.plugin = plugin;
         }
@@ -207,11 +207,11 @@ public class CosmeticsGui extends AbstractGui
         }
     }
 
-    class ParticleSelectorGui extends AbstractGui
+    private class ParticleSelectorGui extends AbstractGui
     {
         private Bowling plugin;
 
-        public ParticleSelectorGui(Bowling plugin)
+        ParticleSelectorGui(Bowling plugin)
         {
             this.plugin = plugin;
         }

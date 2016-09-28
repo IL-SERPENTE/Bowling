@@ -8,11 +8,8 @@ import net.samagames.bowling.entities.Ball;
 import net.samagames.bowling.entities.StandBall;
 import net.samagames.bowling.guis.CosmeticsGui;
 import net.samagames.tools.scoreboards.ObjectiveSign;
-import org.apache.commons.lang3.tuple.Triple;
 import org.bukkit.ChatColor;
-import org.bukkit.Particle;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
 
 import java.util.Arrays;
 
@@ -37,7 +34,7 @@ public class BPlayer extends GamePlayer
         this.resetScore(player);
     }
 
-    public void loadFromDB()
+    void loadFromDB()
     {
         try
         {
@@ -63,7 +60,7 @@ public class BPlayer extends GamePlayer
         return this.bowlingTrack;
     }
 
-    public void setBowlingTrack(BowlingTrack bowlingTrack)
+    void setBowlingTrack(BowlingTrack bowlingTrack)
     {
         this.bowlingTrack = bowlingTrack;
     }
@@ -73,7 +70,7 @@ public class BPlayer extends GamePlayer
         return ballDescription;
     }
 
-    public void resetScore(Player player)
+    void resetScore(Player player)
     {
         if (this.objectiveSign != null)
             this.objectiveSign.removeReceiver(player);
@@ -84,23 +81,23 @@ public class BPlayer extends GamePlayer
         this.currentShoot = 0;
     }
 
-    public void setScore(int where, int score)
+    void setScore(int where, int score)
     {
         if (where >= 0 && where < this.score.length)
             this.score[where] = score;
     }
 
-    public int getScore(int where)
+    int getScore(int where)
     {
         return this.score[where];
     }
 
-    public int getCurrentShoot()
+    int getCurrentShoot()
     {
         return this.currentShoot;
     }
 
-    public void setCurrentShoot(int currentShoot)
+    void setCurrentShoot(int currentShoot)
     {
         this.currentShoot = currentShoot;
     }
@@ -139,7 +136,7 @@ public class BPlayer extends GamePlayer
         return result;
     }
 
-    public void updateScoreboard(Bowling bowling)
+    void updateScoreboard(Bowling bowling)
     {
         this.objectiveSign.setLine(0, " ");
         this.objectiveSign.setLine(1, ChatColor.GRAY + "Joueurs : " + ChatColor.WHITE + bowling.getGame().getInGamePlayers().size());
@@ -160,7 +157,7 @@ public class BPlayer extends GamePlayer
         this.spectator = true;
     }
 
-    public int[] getScores()
+    int[] getScores()
     {
         return this.score;
     }

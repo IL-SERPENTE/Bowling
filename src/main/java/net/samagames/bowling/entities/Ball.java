@@ -1,6 +1,6 @@
 package net.samagames.bowling.entities;
 
-import net.minecraft.server.v1_9_R2.World;
+import net.minecraft.server.v1_10_R1.World;
 import net.samagames.bowling.Bowling;
 import net.samagames.bowling.game.BPlayer;
 import net.samagames.bowling.game.BowlingTrack;

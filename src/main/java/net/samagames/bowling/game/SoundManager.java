@@ -41,13 +41,13 @@ public class SoundManager implements Listener
         }
     }
 
-    public void addPlayer(Player player)
+    void addPlayer(Player player)
     {
         if (this.songPlayer != null)
             this.songPlayer.addPlayer(player);
     }
 
-    public void removePlayer(Player player)
+    void removePlayer(Player player)
     {
         if (this.songPlayer != null)
             this.songPlayer.removePlayer(player);

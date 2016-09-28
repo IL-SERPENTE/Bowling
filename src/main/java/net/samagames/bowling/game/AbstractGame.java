@@ -34,7 +34,7 @@ public abstract class AbstractGame extends Game<BPlayer>
     protected Location spawn;
     protected ItemStack rulesBook;
 
-    public AbstractGame(Bowling plugin, String description)
+    protected AbstractGame(Bowling plugin, String description)
     {
         super("bowling", "Bowling", description, BPlayer.class);
         this.plugin = plugin;
@@ -49,7 +49,7 @@ public abstract class AbstractGame extends Game<BPlayer>
         this.tracks.forEach(track -> track.respawn(true));
         this.tracks.forEach(track -> track.setScore(0));
 
-        CustomNPC customNPC = this.plugin.getSamaGamesAPI().getNPCManager().createNPC(LocationUtils.str2loc(this.gameManager.getGameProperties().getConfig("npc", new JsonPrimitive("world, 0, 4, 0")).getAsString()), UUID.fromString("6715ffeb-966f-45a1-a19f-dc9c07e039b3"), "Samaritan");
+        CustomNPC customNPC = this.plugin.getSamaGamesAPI().getNPCManager().createNPC(LocationUtils.str2loc(this.gameManager.getGameProperties().getConfig("npc", new JsonPrimitive("world, 0, 4, 0")).getAsString()), UUID.fromString("6715ffeb-966f-45a1-a19f-dc9c07e039b3"), new String[]{"Samaritan"});
         customNPC.setCallback((right, player) ->
         {
             BPlayer bPlayer = this.getPlayer(player.getUniqueId());

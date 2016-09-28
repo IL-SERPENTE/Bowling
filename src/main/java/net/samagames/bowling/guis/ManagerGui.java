@@ -15,7 +15,7 @@ public class ManagerGui extends AbstractGui
     private Bowling bowling;
     private boolean exit;
 
-    public ManagerGui(Bowling bowling)
+    ManagerGui(Bowling bowling)
     {
         this(bowling, false);
     }

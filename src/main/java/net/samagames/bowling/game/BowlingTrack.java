@@ -14,7 +14,7 @@ import org.bukkit.DyeColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Banner;
-import org.bukkit.craftbukkit.v1_9_R2.CraftWorld;
+import org.bukkit.craftbukkit.v1_10_R1.CraftWorld;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.Arrays;

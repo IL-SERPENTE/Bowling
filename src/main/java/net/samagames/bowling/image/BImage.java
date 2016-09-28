@@ -15,18 +15,18 @@ import java.util.Scanner;
 /**
  * Created by Rigner for project Bowling.
  */
-public class BImage
+class BImage
 {
     private BufferedImage bufferedImage;
     private ImageConfiguration imageConfiguration;
 
-    public BImage(ImageConfiguration imageConfiguration) throws IOException
+    BImage(ImageConfiguration imageConfiguration) throws IOException
     {
         this.imageConfiguration = imageConfiguration;
         this.bufferedImage = ImageIO.read(new File(imageConfiguration.getFilePath()));
     }
 
-    public void draw(String username, int[] scores)
+    void draw(String username, int[] scores)
     {
         Graphics2D graphics2D = this.bufferedImage.createGraphics();
         graphics2D.setColor(Color.BLACK);
@@ -88,7 +88,7 @@ public class BImage
         }
     }
 
-    public String send() throws IOException
+    String send() throws IOException
     {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         ImageIO.write(this.bufferedImage, "png", baos);

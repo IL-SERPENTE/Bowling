@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class VersusGame extends AbstractGame
 {
-    protected boolean end;
+    private boolean end;
 
     public VersusGame(Bowling plugin)
     {
@@ -63,7 +63,7 @@ public class VersusGame extends AbstractGame
         this.plugin.getServer().getScheduler().runTaskLater(this.plugin, this::checkStump, 40L);
     }
 
-    public void checkStump()
+    private void checkStump()
     {
         if (this.end)
             return ;
